@@ -5,8 +5,8 @@ function pow (number, degree) {
     } else if(degree === 1) {
         return number;
     } else {
-        return number *= pow(number , degree - 1);
+        return number * pow(number , degree - 1);
     }
 
 }
-console.log(pow(8,7));
+console.log(pow(2,7));
