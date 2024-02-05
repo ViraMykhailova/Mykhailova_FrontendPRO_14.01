@@ -10,8 +10,9 @@ function generateKey (length, characters) {
         Math.random() * (max - min + 1) + min);
     key += characters[randomEl];
     }
-    console.log(key);
+    return key;
 }
 
-generateKey(8, characters);
+const key = generateKey(8, characters);
+console.log(key);
 
