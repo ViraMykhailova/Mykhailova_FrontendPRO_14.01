@@ -20,7 +20,7 @@ countAverage();
 Вивести результат математичної дії, вказаної в змінній znak.Обидва числа і знак виходять від користувача.
  */
 
-/*function doMath (x, znak, y) {
+function doMath (x, znak, y) {
     x = +prompt('Введіть перше число');
     y = +prompt('Введіть друге число');
     znak = prompt(' Введіть одну з операцій : +, -, *, /, %, ^');
@@ -56,13 +56,13 @@ countAverage();
     return result;
 }
 let mathResult = doMath();
-console.log (`Результат вашої операції = ${mathResult}`); */
+console.log (`Результат вашої операції = ${mathResult}`);
 
 /*3. Написати функцію заповнення даними користувача двомірного масиву.
 Довжину основного масиву і внутрішніх масивів задає користувач.
 Значення всіх елементів всіх масивів задає користувач.
  */
-/*function addToArray () {
+function addToArray () {
     let array = [];
     let arrayLength = +prompt('Введіть кількість масивів основного масиву');
 
@@ -78,7 +78,7 @@ for (let i= 0; i < arrayLength; i++) {
 }
 
 let newArray = addToArray();
-console.log (newArray);*/
+console.log (newArray);
 
 /*4.Створити функцію, яка прибирає з рядка всі символи, які ми передали другим аргументом.
 'func(" hello world", ['l', 'd'])' поверне нам "heo wor".
@@ -86,12 +86,11 @@ console.log (newArray);*/
  */
 
 function deleteSymbols (string, symbols) {
-   string = prompt('Введіть текст');
-   symbols = prompt('Введіть символи, які хочете видалити');
+
    for (let i = 0; i < symbols.length; i++){
-    string = string.replace(symbols[i], '');
+    string = string.replaceAll(symbols[i], '');
    }
 console.log(string);
 }
 
-deleteSymbols();
+deleteSymbols('Hello world', ['l', 'd']);
