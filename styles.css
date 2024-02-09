@@ -1,0 +1,13 @@
+.wrapper{
+    position: relative;
+}
+
+.displayBlock {
+    position: absolute;
+    width: 171px;
+    height: 100px;
+    background: darkgray;
+    left: 171px;
+    display: block;
+}
+
