@@ -2,12 +2,12 @@
     position: relative;
 }
 
-.displayBlock {
+.displayDiv {
     position: absolute;
     width: 171px;
     height: 100px;
     background: darkgray;
     left: 183px;
-    display: block;
+
 }
 
