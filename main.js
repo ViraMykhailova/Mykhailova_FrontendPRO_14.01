@@ -8,7 +8,7 @@ const imagesSrc = [
     './images/7.jpeg',
     './images/8.jpeg',
     './images/9.jpeg',
-]
+];
 
 const image = document.querySelector('#image');
 const buttonPrev = document.querySelector('#buttonPrev');
@@ -35,6 +35,5 @@ buttonPrev.addEventListener('click', () =>{
         buttonNext.classList.remove('hidden');
     }
     image.src = imagesSrc[imageIndex];
-
 });
 
