@@ -1,0 +1,25 @@
+.container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 15px;
+    width: 100%;
+}
+.wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.buttonsWrapper {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+.hidden {
+    visibility: hidden;
+}
+
+.button {
+    width: 150px;
+    padding: 10px;
+    cursor: pointer;
+}
