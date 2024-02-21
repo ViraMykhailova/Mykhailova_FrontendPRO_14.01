@@ -1,0 +1,14 @@
+.wrapper {
+    display: flex;
+    gap: 25px;
+    font-size: 30px;
+}
+.smile-vote {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.smileImg {
+    cursor: pointer;
+}
