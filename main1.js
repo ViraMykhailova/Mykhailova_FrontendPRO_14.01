@@ -82,7 +82,7 @@ function showProductsList(productsArray) {
                 e.stopPropagation();
                 alert('Товар додано у корзину');
                 productsList.innerHTML = '';
-                productsInfo.removeChild(info);
+                productsInfo.innerHTML = '';
 
             })
 
