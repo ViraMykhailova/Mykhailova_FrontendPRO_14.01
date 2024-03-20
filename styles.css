@@ -43,7 +43,8 @@
     text-align: center;
 
 }
-.buyButton {
+.buyButton,
+.orderBtn {
     display: block;
     margin: 10px auto;
     padding: 10px;
@@ -52,7 +53,8 @@
     color: aliceblue;
     cursor: pointer;
 }
-.buyButton:hover {
+.buyButton:hover,
+.orderBtn:hover {
     background-color: #4d4c4c;
     color: coral;
 }
@@ -67,6 +69,9 @@
     background-color: #bbbaba;
 
 }
+.form-wrapper {
+    padding: 10px;
+}
 input:invalid,
 select:invalid {
     border: 1px dashed red;
@@ -78,5 +83,5 @@ select:invalid:required {
 }
 
 input:valid {
-    border: 2px solid black;
+    border: 1px solid black;
 }

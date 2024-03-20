@@ -1,4 +1,5 @@
 'use strict'
+
 const BeautyShopData = [
     {
         category:'Волосся',
@@ -45,29 +46,34 @@ const categoriesList = document.querySelector('#categories');
 const productsList = document.querySelector('#products');
 const productsInfo = document.querySelector('#info');
 const modalForm = document.querySelector('#modal');
-const orderButton =document.querySelector('#order-btn');
+const orderForm = document.querySelector('#order-form');
 const buyerName =document.querySelector('#name');
 const buyerCity = document.querySelector('#city');
 const buyerAddress = document.querySelector('#post-address');
 const buyerPayment = document.querySelector('#payment-type');
 const quantity =document.querySelector('#quantity');
 const buyerComment =document.querySelector('#comment');
-BeautyShopData.forEach(item => {
-    const category = document.createElement('div');
-    category.innerText = item.category;
-    category.classList.add('categoryItem');
 
-    category.addEventListener('click', () => {
-        productsInfo.innerHTML = '';
-        showProductsList(item.products);
 
+showCategories();
+function showCategories() {
+    BeautyShopData.forEach(item => {
+        const category = document.createElement('div');
+        category.innerText = item.category;
+        category.classList.add('categoryItem');
+
+        category.addEventListener('click', () => {
+            productsInfo.innerHTML = '';
+            showProductsList(item.products);
+
+        })
+
+        categoriesList.appendChild(category);
     })
-
-    categoriesList.appendChild(category);
-});
-
+}
 function showProductsList(productsArray) {
     productsList.innerHTML = '';
+
     productsArray.forEach(item => {
         const product = document.createElement('div');
         product.innerText = item.name;
@@ -103,20 +109,25 @@ function showProductsList(productsArray) {
     })
 
 }
+orderForm.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-orderButton.addEventListener('click', () => {
-//  тут хочу додати перевірку заповненості полів форми, і якщо все ок, тоді виконується цей код :
-    modalForm.style.visibility = 'hidden'
+    if(quantity.value < 1){
+        alert ('Bи ввели не вірну кількість');
+    } else {
+        modalForm.style.visibility = 'hidden';
+        alert(`Ваше замовлення:
+        ПІБ: ${buyerName.value}
+        Місто: ${buyerCity.value}
+        Склад НП: ${buyerAddress.value}
+        Спосіб оплати: ${buyerPayment.value}
+        Кількість товару: ${quantity.value}
+        Коментар: ${buyerComment.value}`);
 
-    alert(`Ваше замовлення:
-    ПІБ: ${buyerName.value}
-    Місто: ${buyerCity.value}
-    Склад НП: ${buyerAddress.value}
-    Спосіб оплати: ${buyerPayment.value}
-    Кількість товару: ${quantity.value}
-    Коментар: ${buyerComment.value}
-    
-    `);
+        showCategories();
+    }
+
+});
 
 
-})
+
