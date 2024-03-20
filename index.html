@@ -15,6 +15,44 @@
 <div id="info" class="info"></div>
 
 </div>
+<div id="modal" class="modal-form">
+    <div id="form" class="form-wrapper">
+        <form>
+        <label for="name">ПІБ:</label>
+        <input id="name" type="text" name="name" placeholder="Введіть ваші дані" required/>
+        <br/>
+        <label for="city">Оберіть місто:</label>
+        <select id="city" name="city" required>
+            <option value=""></option>
+            <option value="київ">Київ</option>
+            <option value="житомир">Житомир</option>
+            <option value="іваноФранківськ">Івано-Франківськ</option>
+            <option value="вінниця">Вінниця</option>
+        </select>
+        <br/>
+        <label for="post-address">Склад НП</label>
+        <input id="post-address" type="text" name="post-address" placeholder="Введіть № складу НП" required/>
+        <br/>
+        <label for="payment-type">Оберіть спосіб оплати:</label>
+        <br/>
+        <select id="payment-type" name="payment-type" required>
+            <option value=""></option>
+            <option value="оплата банківською карткою">Оплата банківською карткою</option>
+            <option value="оплата при отриманні">Оплата при отриманні</option>
+        </select>
+        <br/>
+        <label for="quantity">Кількість товару:</label>
+        <input type="number" id="quantity" name="quantity" step="1" required>
+        <br/>
+        <label for="comment">Коментар до замовлення:</label>
+        <br/>
+        <textarea id="comment" name="comment"></textarea>
+        <br/>
+        <button id="order-btn">Замовити</button>
+        </form>
+
+    </div>
+</div>
 <script src="main1.js"></script>
 </body>
 </html>

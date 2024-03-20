@@ -44,7 +44,14 @@ const BeautyShopData = [
 const categoriesList = document.querySelector('#categories');
 const productsList = document.querySelector('#products');
 const productsInfo = document.querySelector('#info');
-
+const modalForm = document.querySelector('#modal');
+const orderButton =document.querySelector('#order-btn');
+const buyerName =document.querySelector('#name');
+const buyerCity = document.querySelector('#city');
+const buyerAddress = document.querySelector('#post-address');
+const buyerPayment = document.querySelector('#payment-type');
+const quantity =document.querySelector('#quantity');
+const buyerComment =document.querySelector('#comment');
 BeautyShopData.forEach(item => {
     const category = document.createElement('div');
     category.innerText = item.category;
@@ -80,9 +87,10 @@ function showProductsList(productsArray) {
 
             buyButton.addEventListener('click', (e)=> {
                 e.stopPropagation();
-                alert('Товар додано у корзину');
+                categoriesList.innerHTML = '';
                 productsList.innerHTML = '';
                 productsInfo.innerHTML = '';
+                modalForm.style.visibility = 'visible'
 
             })
 
@@ -95,3 +103,20 @@ function showProductsList(productsArray) {
     })
 
 }
+
+orderButton.addEventListener('click', () => {
+//  тут хочу додати перевірку заповненості полів форми, і якщо все ок, тоді виконується цей код :
+    modalForm.style.visibility = 'hidden'
+
+    alert(`Ваше замовлення:
+    ПІБ: ${buyerName.value}
+    Місто: ${buyerCity.value}
+    Склад НП: ${buyerAddress.value}
+    Спосіб оплати: ${buyerPayment.value}
+    Кількість товару: ${quantity.value}
+    Коментар: ${buyerComment.value}
+    
+    `);
+
+
+})

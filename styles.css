@@ -56,3 +56,27 @@
     background-color: #4d4c4c;
     color: coral;
 }
+
+.modal-form {
+    visibility: hidden;
+    width: 300px;
+    position: fixed;
+    z-index: 99;
+    top: 50px;
+    left: 200px;
+    background-color: #bbbaba;
+
+}
+input:invalid,
+select:invalid {
+    border: 1px dashed red;
+}
+
+input:invalid:required,
+select:invalid:required {
+    background-image: linear-gradient(to right, pink, lightgreen);
+}
+
+input:valid {
+    border: 2px solid black;
+}
