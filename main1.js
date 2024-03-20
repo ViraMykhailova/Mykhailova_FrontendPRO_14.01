@@ -125,6 +125,14 @@ orderForm.addEventListener('submit', (e) => {
         Коментар: ${buyerComment.value}`);
 
         showCategories();
+
+        buyerName.value = '';
+        buyerCity.value = '';
+        buyerAddress.value = '';
+        buyerPayment.value = '';
+        quantity.value = '';
+        buyerComment.value = '';
+
     }
 
 });
