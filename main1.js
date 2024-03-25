@@ -51,9 +51,13 @@ const buyerName =document.querySelector('#name');
 const buyerCity = document.querySelector('#city');
 const buyerAddress = document.querySelector('#post-address');
 const buyerPayment = document.querySelector('#payment-type');
-const quantity =document.querySelector('#quantity');
-const buyerComment =document.querySelector('#comment');
+const quantity = document.querySelector('#quantity');
+const buyerComment = document.querySelector('#comment');
+const myOrdersBtn = document.querySelector('#orderInfoBtn');
+const ordersList = document.querySelector('#ordersList');
 
+let orderedItem = localStorage.getItem('item');
+const orders = orderedItem ? JSON.parse(localStorage.getItem('item')) : [];
 
 showCategories();
 function showCategories() {
@@ -91,11 +95,16 @@ function showProductsList(productsArray) {
             buyButton.innerText = 'Купити';
             buyButton.classList.add('buyButton');
 
-            buyButton.addEventListener('click', (e)=> {
-                e.stopPropagation();
+            buyButton.addEventListener('click', ()=> {
+                //e.stopPropagation();
+                orders.push(item);
+                localStorage.setItem('orders', JSON.stringify(orders));
+
                 categoriesList.innerHTML = '';
                 productsList.innerHTML = '';
-                productsInfo.innerHTML = '';
+
+                ordersList.innerHTML = '';
+
                 modalForm.style.visibility = 'visible'
 
             })
@@ -138,4 +147,27 @@ orderForm.addEventListener('submit', (e) => {
 });
 
 
+function showOrders (ordersArr) {
+    if(ordersList) {
+        ordersList.innerHTML = ''
+    }
 
+    ordersArr.forEach(order => {
+
+        const orderedProduct = document.createElement('div');
+        orderedProduct.innerText = order.name;
+        orderedProduct.classList.add('ordered-name');
+
+        const orderedProductInfo = document.createElement('div');
+        orderedProductInfo.innerText = order.info;
+
+        ordersList.appendChild(orderedProduct);
+        ordersList.appendChild(orderedProductInfo);
+
+    })
+
+}
+
+myOrdersBtn.addEventListener('click', () => {
+    showOrders(orders);
+});

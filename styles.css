@@ -54,11 +54,18 @@
     cursor: pointer;
 }
 .buyButton:hover,
-.orderBtn:hover {
+.orderBtn:hover,
+.orderInfoBtn:hover {
     background-color: #4d4c4c;
     color: coral;
 }
-
+.orderInfoBtn {
+    padding: 10px;
+    border:none;
+    background-color: black;
+    color: aliceblue;
+    cursor: pointer;
+}
 .modal-form {
     visibility: hidden;
     width: 300px;
