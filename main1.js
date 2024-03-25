@@ -102,7 +102,6 @@ function showProductsList(productsArray) {
 
                 categoriesList.innerHTML = '';
                 productsList.innerHTML = '';
-
                 ordersList.innerHTML = '';
 
                 modalForm.style.visibility = 'visible'
