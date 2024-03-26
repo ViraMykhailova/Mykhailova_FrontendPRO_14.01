@@ -59,6 +59,7 @@ const ordersList = document.querySelector('#ordersList');
 let orderedItem = localStorage.getItem('item');
 const orders = orderedItem ? JSON.parse(localStorage.getItem('item')) : [];
 
+
 showCategories();
 function showCategories() {
     BeautyShopData.forEach(item => {
@@ -75,6 +76,7 @@ function showCategories() {
         categoriesList.appendChild(category);
     })
 }
+
 function showProductsList(productsArray) {
     productsList.innerHTML = '';
 
@@ -96,13 +98,13 @@ function showProductsList(productsArray) {
             buyButton.classList.add('buyButton');
 
             buyButton.addEventListener('click', ()=> {
-                //e.stopPropagation();
                 orders.push(item);
                 localStorage.setItem('orders', JSON.stringify(orders));
 
                 categoriesList.innerHTML = '';
                 productsList.innerHTML = '';
-                ordersList.innerHTML = '';
+                productsInfo.innerHTML = '';
+                //ordersList.innerHTML = '';
 
                 modalForm.style.visibility = 'visible'
 
@@ -117,6 +119,8 @@ function showProductsList(productsArray) {
     })
 
 }
+
+
 orderForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -124,15 +128,14 @@ orderForm.addEventListener('submit', (e) => {
         alert ('Bи ввели не вірну кількість');
     } else {
         modalForm.style.visibility = 'hidden';
-        alert(`Ваше замовлення:
+       /* alert(`Ваше замовлення:
         ПІБ: ${buyerName.value}
         Місто: ${buyerCity.value}
         Склад НП: ${buyerAddress.value}
         Спосіб оплати: ${buyerPayment.value}
         Кількість товару: ${quantity.value}
-        Коментар: ${buyerComment.value}`);
+        Коментар: ${buyerComment.value}`); */
 
-        showCategories();
 
         buyerName.value = '';
         buyerCity.value = '';
@@ -141,32 +144,49 @@ orderForm.addEventListener('submit', (e) => {
         quantity.value = '';
         buyerComment.value = '';
 
+        showCategories();
+
     }
+
 
 });
 
-
 function showOrders (ordersArr) {
     if(ordersList) {
-        ordersList.innerHTML = ''
+       ordersList.innerHTML = ''
     }
+    ordersArr.forEach(product => {
 
-    ordersArr.forEach(order => {
+        const orderedProductWrapper = document.createElement('div');
+        orderedProductWrapper.classList.add('orderedProductWrapper');
 
         const orderedProduct = document.createElement('div');
-        orderedProduct.innerText = order.name;
+        orderedProduct.innerText = product.name;
         orderedProduct.classList.add('ordered-name');
 
-        const orderedProductInfo = document.createElement('div');
-        orderedProductInfo.innerText = order.info;
+        const orderDetails = document.createElement('span');
+        orderDetails.classList.add('order-details');
+        orderDetails.innerText = 'Деталі замовлення'
 
-        ordersList.appendChild(orderedProduct);
-        ordersList.appendChild(orderedProductInfo);
+        orderDetails.addEventListener('click', () => {
 
-    })
+            const orderedProductInfo = document.createElement('div');
+            orderedProductInfo.innerText = product.info;
+            orderedProductInfo.classList.add('ordered-info');
+
+            orderedProductWrapper.appendChild(orderedProductInfo);
+        });
+
+        ordersList.appendChild(orderedProductWrapper);
+        orderedProductWrapper.appendChild(orderedProduct);
+        orderedProductWrapper.appendChild(orderDetails);
+
+    });
 
 }
 
+
 myOrdersBtn.addEventListener('click', () => {
+    categoriesList.innerHTML = '';
     showOrders(orders);
 });
