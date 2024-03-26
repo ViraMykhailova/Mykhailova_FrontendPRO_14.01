@@ -164,6 +164,10 @@ function showOrders (ordersArr) {
         orderedProduct.innerText = product.name;
         orderedProduct.classList.add('ordered-name');
 
+        const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('delete-order-btn');
+        deleteBtn.innerText = 'X'
+
         const orderDetails = document.createElement('span');
         orderDetails.classList.add('order-details');
         orderDetails.innerText = 'Деталі замовлення'
@@ -179,6 +183,7 @@ function showOrders (ordersArr) {
 
         ordersList.appendChild(orderedProductWrapper);
         orderedProductWrapper.appendChild(orderedProduct);
+        orderedProduct.appendChild(deleteBtn);
         orderedProductWrapper.appendChild(orderDetails);
 
     });

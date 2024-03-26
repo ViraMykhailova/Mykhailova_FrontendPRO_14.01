@@ -60,6 +60,7 @@
     color: coral;
 }
 .orderInfoBtn {
+    width: 100px;
     margin-left:15px;
     padding: 10px;
     border:none;
@@ -94,10 +95,7 @@ input:valid {
     border: 1px solid black;
 }
 
-.order-info {
-    display: flex;
-    align-items: center;
-}
+
 
 .orderedProductWrapper {
     width: 200px;
@@ -109,4 +107,16 @@ input:valid {
     color: #3f3e3e;
     cursor: pointer;
     text-decoration: underline;
+}
+.ordered-info {
+    font-size: 0.8rem;
+}
+.ordered-name {
+    display: flex;
+    justify-content: space-between;
+}
+.delete-order-btn{
+    font-size: 0.8rem;
+    background-color: transparent;
+    border: none;
 }
