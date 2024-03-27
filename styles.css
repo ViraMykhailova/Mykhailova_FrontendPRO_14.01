@@ -44,7 +44,8 @@
 
 }
 .buyButton,
-.orderBtn {
+.orderBtn,
+.okBtn {
     display: block;
     margin: 10px auto;
     padding: 10px;
@@ -55,7 +56,8 @@
 }
 .buyButton:hover,
 .orderBtn:hover,
-.orderInfoBtn:hover {
+.orderInfoBtn:hover,
+.okBtn:hover {
     background-color: #4d4c4c;
     color: coral;
 }
@@ -68,17 +70,26 @@
     color: aliceblue;
     cursor: pointer;
 }
-.modal-form {
+.modal-wrapper {
+    display: flex;
     visibility: hidden;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0; top: 0; right: 0; bottom: 0;
+    justify-content: center;
+    align-items: center;
+}
+.modal-form {
+    display: block;
     width: 300px;
     position: fixed;
     z-index: 99;
-    top: 50px;
-    left: 200px;
     background-color: #bbbaba;
 
 }
-.form-wrapper {
+.form-wrapper,
+.ordered-data {
     padding: 10px;
 }
 input:invalid,
@@ -95,18 +106,19 @@ input:valid {
     border: 1px solid black;
 }
 
-
-
 .orderedProductWrapper {
     width: 200px;
     padding: 15px;
 }
-
 .order-details {
     font-size: 0.6rem;
     color: #3f3e3e;
     cursor: pointer;
     text-decoration: underline;
+}
+.order-date {
+    font-size: 0.6rem;
+    color: #3f3e3e;
 }
 .ordered-info {
     font-size: 0.8rem;
@@ -116,7 +128,12 @@ input:valid {
     justify-content: space-between;
 }
 .delete-order-btn{
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     background-color: transparent;
     border: none;
+    cursor: pointer;
+}
+.buyer-data {
+    font-size: 0.8rem;
+    padding: 5px;
 }

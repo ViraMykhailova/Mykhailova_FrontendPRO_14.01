@@ -41,12 +41,12 @@ const BeautyShopData = [
         }]
     },
 ];
-
 const categoriesList = document.querySelector('#categories');
 const productsList = document.querySelector('#products');
 const productsInfo = document.querySelector('#info');
-const modalForm = document.querySelector('#modal');
+const modalForm = document.querySelector('#form');
 const orderForm = document.querySelector('#order-form');
+const orderCompleteWindow = document.querySelector('#modal-orderComplete');
 const buyerName =document.querySelector('#name');
 const buyerCity = document.querySelector('#city');
 const buyerAddress = document.querySelector('#post-address');
@@ -55,9 +55,7 @@ const quantity = document.querySelector('#quantity');
 const buyerComment = document.querySelector('#comment');
 const myOrdersBtn = document.querySelector('#orderInfoBtn');
 const ordersList = document.querySelector('#ordersList');
-
-let orderedItem = localStorage.getItem('item');
-const orders = orderedItem ? JSON.parse(localStorage.getItem('item')) : [];
+let orders = localStorage.getItem('orders') ? JSON.parse(localStorage.getItem('orders')) : [];
 
 
 showCategories();
@@ -70,13 +68,10 @@ function showCategories() {
         category.addEventListener('click', () => {
             productsInfo.innerHTML = '';
             showProductsList(item.products);
-
-        })
-
+        });
         categoriesList.appendChild(category);
-    })
+    });
 }
-
 function showProductsList(productsArray) {
     productsList.innerHTML = '';
 
@@ -98,29 +93,27 @@ function showProductsList(productsArray) {
             buyButton.classList.add('buyButton');
 
             buyButton.addEventListener('click', ()=> {
-                orders.push(item);
+                const orderItem = {
+                    name: item.name,
+                    info: item.info,
+                    date: new Date().toLocaleString(),
+                }
+                orders.push(orderItem);
                 localStorage.setItem('orders', JSON.stringify(orders));
 
+                myOrdersBtn.style.visibility = 'hidden'
                 categoriesList.innerHTML = '';
                 productsList.innerHTML = '';
                 productsInfo.innerHTML = '';
-                //ordersList.innerHTML = '';
-
+                ordersList.innerHTML = '';
                 modalForm.style.visibility = 'visible'
-
-            })
-
+            });
             productsInfo.appendChild(info);
             info.appendChild(buyButton);
-        })
-
+        });
         productsList.appendChild(product);
-
-    })
-
+    });
 }
-
-
 orderForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -128,37 +121,50 @@ orderForm.addEventListener('submit', (e) => {
         alert ('Bи ввели не вірну кількість');
     } else {
         modalForm.style.visibility = 'hidden';
-       /* alert(`Ваше замовлення:
-        ПІБ: ${buyerName.value}
-        Місто: ${buyerCity.value}
-        Склад НП: ${buyerAddress.value}
-        Спосіб оплати: ${buyerPayment.value}
-        Кількість товару: ${quantity.value}
-        Коментар: ${buyerComment.value}`); */
+        orderCompleteWindow.style.visibility = 'visible';
 
+        const orderData = document.querySelector('#ordered-data');
+        orderData.innerHTML = `
+        <p>Деталі вашого замовлення : </p>
+        <p class ='buyer-data'>ПІБ: ${buyerName.value}</p>
+        <p class ='buyer-data'>Місто: ${buyerCity.value}</p>
+        <p class ='buyer-data'>Склад НП: ${buyerAddress.value}</p>
+        <p class ='buyer-data'>Спосіб оплати: ${buyerPayment.value}</p>
+        <p class ='buyer-data'>Кількість товару: ${quantity.value}</p>
+        <p class ='buyer-data'>Коментар: ${buyerComment.value}</p> `
 
+        document.querySelector('#close-data').addEventListener('click', ()=> {
+            orderCompleteWindow.style.visibility = 'hidden';
+            showCategories();
+            myOrdersBtn.style.visibility = 'visible';
+
+        });
         buyerName.value = '';
         buyerCity.value = '';
         buyerAddress.value = '';
         buyerPayment.value = '';
         quantity.value = '';
         buyerComment.value = '';
-
-        showCategories();
-
     }
-
-
 });
-
+function deleteOrder(order) {
+     orders = orders.filter( o => {
+        return o.date !== order.date;
+    });
+     localStorage.setItem('orders', JSON.stringify(orders));
+    showOrders(orders);
+}
 function showOrders (ordersArr) {
     if(ordersList) {
        ordersList.innerHTML = ''
     }
     ordersArr.forEach(product => {
-
         const orderedProductWrapper = document.createElement('div');
         orderedProductWrapper.classList.add('orderedProductWrapper');
+
+        const orderDate = document.createElement('div');
+        orderDate.innerText = product.date;
+        orderDate.classList.add('order-date');
 
         const orderedProduct = document.createElement('div');
         orderedProduct.innerText = product.name;
@@ -168,30 +174,37 @@ function showOrders (ordersArr) {
         deleteBtn.classList.add('delete-order-btn');
         deleteBtn.innerText = 'X'
 
+        deleteBtn.addEventListener('click', (e)=> {
+            e.stopPropagation();
+            deleteOrder(product);
+        });
+
         const orderDetails = document.createElement('span');
         orderDetails.classList.add('order-details');
         orderDetails.innerText = 'Деталі замовлення'
 
+        const infoWrapper =document.createElement('div');
+
         orderDetails.addEventListener('click', () => {
+            infoWrapper.innerHTML = '';
 
             const orderedProductInfo = document.createElement('div');
             orderedProductInfo.innerText = product.info;
             orderedProductInfo.classList.add('ordered-info');
-
-            orderedProductWrapper.appendChild(orderedProductInfo);
+            infoWrapper.appendChild(orderedProductInfo);
         });
 
         ordersList.appendChild(orderedProductWrapper);
+        orderedProductWrapper.appendChild(orderDate);
         orderedProductWrapper.appendChild(orderedProduct);
         orderedProduct.appendChild(deleteBtn);
         orderedProductWrapper.appendChild(orderDetails);
-
+        orderedProductWrapper.appendChild(infoWrapper)
     });
-
 }
-
-
 myOrdersBtn.addEventListener('click', () => {
     categoriesList.innerHTML = '';
     showOrders(orders);
 });
+
+
