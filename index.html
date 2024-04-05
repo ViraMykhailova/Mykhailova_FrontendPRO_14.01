@@ -2,9 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
     <title></title>
 </head>
 <body>
+  <div id ="registrationWrapper" class="container">
+      <h2>Форма реєстрації</h2>
+      <form id="registrationForm">
+        <div class="form-group">
+            <label for="firstName">Ім'я:</label>
+            <input type="text" id="firstName" name="firstName" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Прізвище:</label>
+            <input type="text" id="lastName" name="lastName" required>
+        </div>
+        <div class="form-group">
+            <label for="birthDate">Дата народження:</label>
+            <input type="text" id="birthDate" name="birthDate" placeholder="дд-мм-рррр" required>
+        </div>
+        <div class="form-group">
+            <label>Стать:</label>
+            <label><input type="radio" name="gender" value="чоловіча" required> Чоловіча</label>
+            <label><input type="radio" name="gender" value="жіноча" required> Жіноча</label>
+        </div>
+        <div class="form-group">
+            <label for="city">Місто:</label>
+            <select id="city" name="city" required>
+                <option value="">Оберіть місто</option>
+                <option value="Київ">Київ</option>
+                <option value="Житомир">Житомир</option>
+                <option value="Івано-Франківськ">Івано-Франківськ</option>
+                <option value="Харків">Харків</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="address">Адреса:</label>
+            <textarea id="address" name="address" rows="4" required></textarea>
+        </div>
+        <div class="form-group">
+            <label>Мови, якими володієте:</label>
+            <label><input type="checkbox" name="languages" value="Англійська"> Англійська</label>
+            <label><input type="checkbox" name="languages" value="Іспанська"> Іспанська</label>
+            <label><input type="checkbox" name="languages" value="Французька"> Французька</label>
+            <label><input type="checkbox" name="languages" value="Німецька"> Німецька</label>
+        </div>
+        <button type="submit" id="submit">Зберегти</button>
+    </form>
+</div>
+  <div class="modal-form">
+  <div class="container" id="user-info"></div>
+  </div>
 
+<script src="main.js"></script>
 </body>
 </html>
